@@ -1,0 +1,33 @@
+.container {
+  padding: 20px;
+}
+
+.layout {
+  display: flex;
+}
+
+.preview-column {
+  width: 66%;
+}
+
+.videos-column {
+  width: 33%;
+  padding-left: 20px;
+}
+
+@media only screen and (max-width: 650px) {
+  .layout {
+    flex-direction: column;
+    /* justify-content: center !important; */
+    align-items: center !important;
+  }
+
+  .preview-column {
+    width: 100%;
+  }
+
+  .videos-column {
+    width: 100%;
+    padding: 10px 0px 0px 0px;
+  }
+}

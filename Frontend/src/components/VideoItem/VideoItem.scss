@@ -1,0 +1,39 @@
+.video-item {
+  display: flex !important;
+  align-items: center;
+  cursor: pointer;
+  img {
+    width: 180px;
+  }
+}
+
+.image,
+.content {
+  width: 50%;
+}
+
+.header {
+  width: 100%;
+  font-size: 1rem;
+}
+
+@media only screen and (max-width: 1000px) {
+  .image {
+    width: 50% !important;
+  }
+
+  .header {
+    font-size: 0.8rem !important;
+    width: 100%;
+  }
+
+  .content {
+    width: 50% !important;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .header {
+    font-size: 0.8rem !important;
+  }
+}
