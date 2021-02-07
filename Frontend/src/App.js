@@ -6,8 +6,6 @@ import VideoList from './components/VideoList/VideoList';
 import VideoDetail from './components/VideoDetails/VideoDetail';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-const KEY = 'AIzaSyD_d-eO2k0oY6yjcmkKefMcq0FW8phokEs';
-
 function App() {
   const [video, setVideo] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState('');
@@ -22,29 +20,30 @@ function App() {
         part: 'snippet',
         maxResults: 20,
         type: 'video',
-        key: KEY,
+        key: process.env.REACT_APP_API_KEY,
         q: term,
       },
     });
 
     setVideo(response.data.items);
+
     setSelectedVideo(response.data.items[0]);
   };
 
-  // const fetchImages = async (term) => {
-  //   const response = await youtube.get('/search', {
-  //     params: {
-  //       part: 'snippet',
-  //       maxResults: 20,
-  //       type: 'video',
-  //       key: KEY,
-  //       q: term,
-  //     },
-  //   });
+  const fetchImages = async (term) => {
+    const response = await youtube.get('/search', {
+      params: {
+        part: 'snippet',
+        maxResults: 20,
+        type: 'video',
+        key: process.env.REACT_APP_API_KEY,
+        q: term,
+      },
+    });
 
-  //   setVideo(video.concat(response.data.items));
-  //   setSelectedVideo(response.data.items[0]);
-  // };
+    setVideo(video.concat(response.data.items));
+    setSelectedVideo(response.data.items[0]);
+  };
 
   const onVideoSelect = (video) => {
     setSelectedVideo(video);
@@ -62,8 +61,8 @@ function App() {
             <VideoDetail video={selectedVideo} />
           </div>
           <div className="videos-column">
-            {/* <InfiniteScroll
-              dataLength={video.length} //This is important field to render the next data
+            <InfiniteScroll
+              dataLength={video.length}
               next={fetchImages}
               hasMore={true}
               loader={<h4>Loading...</h4>}
@@ -72,9 +71,9 @@ function App() {
                   <b>Yay! You have seen it all</b>
                 </p>
               }
-            > */}
-            <VideoList onVideoSelect={onVideoSelect} videos={video} />
-            {/* </InfiniteScroll> */}
+            >
+              <VideoList onVideoSelect={onVideoSelect} videos={video} />
+            </InfiniteScroll>
           </div>
         </div>
       </div>
